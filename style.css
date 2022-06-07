@@ -1,0 +1,16 @@
+.container{
+    display: grid;
+    grid-template-columns: 60px 60px 60px;
+    grid-template-rows: 60px 60px 60px;
+
+}
+
+.cell{
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
