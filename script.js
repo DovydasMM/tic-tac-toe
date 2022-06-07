@@ -82,9 +82,6 @@ function input9cell(input){
     winnerCheck()
 }
 
-
-
-
 let container = document.querySelector('.container')
 
 
