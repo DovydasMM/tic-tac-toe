@@ -24,6 +24,7 @@ const gameBoard = (()=>{
                     cell.textContent=board[index];
                     game.winnerCheck(board)
                     game.switchPlayer()
+                    turnNotification.textContent = `It's ${game.currentPlayer.name} turn`
                     cell.style.pointerEvents='none'
             }
             if (resultScreen.textContent != 'Battle is going!'){
@@ -38,8 +39,13 @@ const gameBoard = (()=>{
         let resultScreen = document.createElement('div')
         resultScreen.className = 'results'
         resultScreen.textContent = 'Battle is going!'
+
+        let turnNotification = document.createElement('div')
+        turnNotification.className = 'playerTurn'
         let body = document.querySelector('body')
+    
         body.appendChild(resultScreen)
+        body.appendChild(turnNotification)
 
             
         return {board}
@@ -53,6 +59,11 @@ const game = (()=>{
 
 
     let currentPlayer = playerOne;
+
+
+
+
+    
 
     function switchPlayer(){
         this.currentPlayer === playerOne ? this.currentPlayer = playerTwo : this.currentPlayer = playerOne;
@@ -85,7 +96,15 @@ const game = (()=>{
             }
         }
     
-    return {currentPlayer, switchPlayer, winnerCheck,}
+
+        function getName(){
+            playerOne.name = playerOneName.value
+            playerTwo.name = playerTwoName.value
+        }
+
+        
+
+    return {currentPlayer, switchPlayer, winnerCheck, getName}
 })();
 
 
