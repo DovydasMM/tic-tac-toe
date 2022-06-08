@@ -62,9 +62,6 @@ const game = (()=>{
 
 
 
-
-    
-
     function switchPlayer(){
         this.currentPlayer === playerOne ? this.currentPlayer = playerTwo : this.currentPlayer = playerOne;
     }
