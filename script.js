@@ -22,29 +22,24 @@ const gameBoard = (()=>{
                 if (board[index]!=null){
                     board[index]=game.currentPlayer.symbol;
                     cell.textContent=board[index];
-                    winnerCheck()
+                    game.winnerCheck(board)
                     game.switchPlayer()
-            }});
+                    cell.style.pointerEvents='none'
+                    if (game.roundWinner===true){
+                        console.log('xe')
+                    }
+            }
+        });
             container.appendChild(cell)
 
         }
         )
-        //function for winner check
-        function winnerCheck(){
-            const winnerIndex = [[0,1,2], 
-                                [3,4,5],
-                                [6,7,8],
-                                [0,3,6],
-                                [1,4,7],
-                                [2,5,8],
-                                [0,4,8],
-                                [2,4,6]]
-            for (i=0; i<winnerIndex.length;i++){
-                   if (board[winnerIndex[i][0]]==board[winnerIndex[i][1]] && board[winnerIndex[i][0]] == board[winnerIndex[i][2]] && board[winnerIndex[i][1]]==board[winnerIndex[i][2]]){
-                    console.log(`Winner is ${game.currentPlayer.name}!`)
-                    }
-                }
-            }
+        let resultScreen = document.createElement('div')
+        resultScreen.className = 'results'
+        resultScreen.textContent = ''
+        let body = document.querySelector('body')
+        body.appendChild(resultScreen)
+
             
         return {board}
     })();
@@ -62,11 +57,31 @@ const game = (()=>{
         this.currentPlayer === playerOne ? this.currentPlayer = playerTwo : this.currentPlayer = playerOne;
     }
 
-    
-
-
-
-    return {currentPlayer, switchPlayer}
+    let roundCount = 9;
+    let roundWinner = false;
+    function winnerCheck(board){
+        const winnerIndex = [[0,1,2], 
+                            [3,4,5],
+                            [6,7,8],
+                            [0,3,6],
+                            [1,4,7],
+                            [2,5,8],
+                            [0,4,8],
+                            [2,4,6]]
+        let resultScreen = document.querySelector('.results')                 
+        for (i=0; i<winnerIndex.length;i++){
+               if (board[winnerIndex[i][0]]==board[winnerIndex[i][1]] && board[winnerIndex[i][0]] == board[winnerIndex[i][2]] && board[winnerIndex[i][1]]==board[winnerIndex[i][2]]){
+                console.log(`Winner is ${game.currentPlayer.name}!`)
+                roundWinner = true;
+                resultScreen.textContent=`Winner is ${game.currentPlayer.name}!`
+            }
+            }   
+            roundCount -= 1
+            if (roundCount==0 && roundWinner==false){
+                resultScreen.textContent="It's a draw!"
+            }
+        }
+    return {currentPlayer, switchPlayer, winnerCheck, roundWinner}
 })();
 
 

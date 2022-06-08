@@ -1,3 +1,9 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .container{
     display: grid;
     grid-template-columns: 60px 60px 60px;
@@ -13,4 +19,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.results{
+    border-style: solid;
+    margin-top: 16px;
+    
 }
