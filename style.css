@@ -3,11 +3,12 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-top: 256px;
 }
 .container{
     display: grid;
-    grid-template-columns: 60px 60px 60px;
-    grid-template-rows: 60px 60px 60px;
+    grid-template-columns: repeat(3,100px);
+    grid-template-rows: repeat(3,100px);
 
 }
 
@@ -23,5 +24,10 @@ body{
 .results{
     border-style: solid;
     margin-top: 16px;
-    
+    width: 200px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

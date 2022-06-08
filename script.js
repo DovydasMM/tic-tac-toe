@@ -25,9 +25,10 @@ const gameBoard = (()=>{
                     game.winnerCheck(board)
                     game.switchPlayer()
                     cell.style.pointerEvents='none'
-                    if (game.roundWinner===true){
-                        console.log('xe')
-                    }
+            }
+            if (resultScreen.textContent != 'Battle is going!'){
+                let allCells = document.querySelectorAll('.cell')
+                allCells.forEach(el => el.style.pointerEvents='none')
             }
         });
             container.appendChild(cell)
@@ -36,7 +37,7 @@ const gameBoard = (()=>{
         )
         let resultScreen = document.createElement('div')
         resultScreen.className = 'results'
-        resultScreen.textContent = ''
+        resultScreen.textContent = 'Battle is going!'
         let body = document.querySelector('body')
         body.appendChild(resultScreen)
 
@@ -74,14 +75,17 @@ const game = (()=>{
                 console.log(`Winner is ${game.currentPlayer.name}!`)
                 roundWinner = true;
                 resultScreen.textContent=`Winner is ${game.currentPlayer.name}!`
+
             }
             }   
             roundCount -= 1
             if (roundCount==0 && roundWinner==false){
                 resultScreen.textContent="It's a draw!"
+
             }
         }
-    return {currentPlayer, switchPlayer, winnerCheck, roundWinner}
+    
+    return {currentPlayer, switchPlayer, winnerCheck,}
 })();
 
 
